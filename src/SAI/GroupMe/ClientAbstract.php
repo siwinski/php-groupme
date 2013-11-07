@@ -11,10 +11,41 @@
 
 namespace SAI\GroupMe;
 
+use Guzzle\Http\Client;
+
 /**
  *
  */
 abstract class ClientAbstract
 {
-    public static BASE_URL = 'https://api.groupme.com/v3';
+    const BASE_URL = 'https://api.groupme.com/v3';
+
+    protected static $client;
+
+    /**
+     * @return \Guzzle\Http\Client
+     */
+    public static function getClient()
+    {
+        if (!isset(self::$client)) {
+            self::$client = new Client(self::BASE_URL);
+        }
+
+        return self::$client;
+    }
+
+    /**
+     * @return array|\Guzzle\Http\Message\Response
+     */
+    public static function getResponse(\Guzzle\Http\Message\RequestInterface $request, $returnObject = false)
+    {
+        $response = $request->send();
+
+        if (!$response->isSuccessful()) {
+            throw new \RuntimeException('Request failed');
+        }
+
+        return $returnObject ? $response : $response->json();
+    }
+
 }
