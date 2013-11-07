@@ -1,0 +1,30 @@
+{
+    "name": "sai/groupme",
+    "description": "Client for GroupMe public API (https://dev.groupme.com/docs/v3)",
+    "keywords": ["groupme"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shawn Iwinski",
+            "email": "shawn.iwinski@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "guzzle/http": "~3.7",
+        "symfony/console": "~2.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7"
+    },
+    "autoload": {
+        "psr-0": {
+            "SAI\\GroupMe": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
