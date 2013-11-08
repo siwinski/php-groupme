@@ -20,7 +20,7 @@ class SMSMode extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#sms_mode_create
      */
-    public static function create($args = null)
+    public function create($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }
@@ -28,7 +28,7 @@ class SMSMode extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#sms_mode_delete
      */
-    public static function delete($args = null)
+    public function delete($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }

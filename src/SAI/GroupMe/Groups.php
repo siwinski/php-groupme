@@ -20,7 +20,7 @@ class Groups extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#groups_index
      */
-    public static function index($args = null)
+    public function index($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }
@@ -28,7 +28,7 @@ class Groups extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#groups_index_former
      */
-    public static function former($args = null)
+    public function former($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }
@@ -36,7 +36,7 @@ class Groups extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#groups_show
      */
-    public static function show($args = null)
+    public function show($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }
@@ -44,7 +44,7 @@ class Groups extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#groups_create
      */
-    public static function create($args = null)
+    public function create($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }
@@ -52,7 +52,7 @@ class Groups extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#groups_update
      */
-    public static function update($args = null)
+    public function update($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }
@@ -60,7 +60,7 @@ class Groups extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#groups_destroy
      */
-    public static function destroy($args = null)
+    public function destroy($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }

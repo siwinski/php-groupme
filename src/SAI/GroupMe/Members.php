@@ -20,7 +20,7 @@ class Members extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#members_add
      */
-    public static function add($args = null)
+    public function add($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }
@@ -28,7 +28,7 @@ class Members extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#members_results
      */
-    public static function results($args = null)
+    public function results($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }

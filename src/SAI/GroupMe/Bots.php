@@ -20,7 +20,7 @@ class Bots extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#bots_create
      */
-    public static function create($args = null)
+    public function create($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }
@@ -28,7 +28,7 @@ class Bots extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#bots_post
      */
-    public static function post($args = null)
+    public function post($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }
@@ -36,7 +36,7 @@ class Bots extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#bots_index
      */
-    public static function index($args = null)
+    public function index($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }
@@ -44,7 +44,7 @@ class Bots extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#bots_destroy
      */
-    public static function destroy($args = null)
+    public function destroy($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }

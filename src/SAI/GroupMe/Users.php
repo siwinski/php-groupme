@@ -20,7 +20,7 @@ class Users extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#users_me
      */
-    public static function me($args = null)
+    public function me($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }

@@ -20,7 +20,7 @@ class Likes extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#likes_create
      */
-    public static function create($args = null)
+    public function create($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }
@@ -28,7 +28,7 @@ class Likes extends ClientAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#likes_destroy
      */
-    public static function destroy($args = null)
+    public function destroy($args = null)
     {
         throw new \RuntimeException('Not implemented');
     }
