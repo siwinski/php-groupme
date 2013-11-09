@@ -18,34 +18,82 @@ use Guzzle\Http\Client;
  */
 abstract class ClientAbstract
 {
+
     const BASE_URL = 'https://api.groupme.com/v3';
 
-    protected static $client;
+    private static $clientCache = array();
+
+    private $accessToken;
+
+    protected $lastResponse;
+
+    public function __construct($accessToken)
+    {
+        $this->setAccessToken($accessToken);
+    }
+
+    public function setAccessToken($accessToken)
+    {
+        $accessToken = trim((string) $accessToken);
+        if (empty($accessToken)) {
+            throw new \InvalidArgumentException('Access token empty');
+        }
+
+        $this->accessToken = $accessToken;
+        $this->getClient()->setDefaultOption('headers/X-Access-Token',  $accessToken);
+
+        return $this;
+    }
+
+    public function getAccessToken()
+    {
+        return $this->accessToken;
+    }
 
     /**
      * @return \Guzzle\Http\Client
      */
-    public static function getClient()
+    public function getClient()
     {
-        if (!isset(self::$client)) {
-            self::$client = new Client(self::BASE_URL);
+        if (!isset(self::$clientCache[$this->accessToken])) {
+            self::$clientCache[$this->accessToken] = new Client(self::BASE_URL);
         }
 
-        return self::$client;
+        return self::$clientCache[$this->accessToken];
     }
 
     /**
      * @return array|\Guzzle\Http\Message\Response
      */
-    public static function getResponse(\Guzzle\Http\Message\RequestInterface $request, $returnObject = false)
+    public function getResponse(\Guzzle\Http\Message\RequestInterface $request, $json = true)
     {
-        $response = $request->send();
+        $this->lastResponse = $request->send();
 
-        if (!$response->isSuccessful()) {
+        if (!$this->lastResponse->isSuccessful()) {
             throw new \RuntimeException('Request failed');
         }
 
-        return $returnObject ? $response : $response->json();
+        return $this->getLastResponse($json);
+    }
+
+    /**
+     * @return \Guzzle\Http\Message\Response
+     */
+    public function getLastResponse($json = true)
+    {
+        if (!is_object($this->lastResponse)) {
+            return null;
+        }
+
+        return $json ? $this->lastResponse->json() : $this->lastResponse;
+    }
+
+    /**
+     * @return \Guzzle\Http\Message\RequestInterface
+     */
+    public function getLastRequest()
+    {
+        return is_object($this->lastResponse) ? $this->lastResponse->getRequest() : null;
     }
 
 }
