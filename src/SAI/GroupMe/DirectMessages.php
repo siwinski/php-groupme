@@ -14,7 +14,7 @@ namespace SAI\GroupMe;
 /**
  * @see https://dev.groupme.com/docs/v3#direct_messages
  */
-class DirectMessages extends ClientAbstract
+class DirectMessages extends ApiAbstract
 {
 
     /**

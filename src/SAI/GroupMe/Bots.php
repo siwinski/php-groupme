@@ -14,7 +14,7 @@ namespace SAI\GroupMe;
 /**
  * @see https://dev.groupme.com/docs/v3#bots
  */
-class Bots extends ClientAbstract
+class Bots extends ApiAbstract
 {
 
     /**

@@ -14,7 +14,7 @@ namespace SAI\GroupMe;
 /**
  * @see https://dev.groupme.com/docs/v3#users
  */
-class Users extends ClientAbstract
+class Users extends ApiAbstract
 {
 
     /**

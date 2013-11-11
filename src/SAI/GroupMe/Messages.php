@@ -14,15 +14,20 @@ namespace SAI\GroupMe;
 /**
  * @see https://dev.groupme.com/docs/v3#messages
  */
-class Messages extends ClientAbstract
+class Messages extends ApiAbstract
 {
+    const BEFORE = 'before';
+    const AFTER  = 'after';
+    const SINCE  = self::AFTER;
 
     /**
      * @see https://dev.groupme.com/docs/v3#messages_index
      */
-    public function index($args = null)
+    public function index($grouId, $messageId = '', $messageDirection = self::AFTER)
     {
         throw new \RuntimeException('Not implemented');
+
+        $uri = '/groups/' . $groupId . '/messages';
     }
 
     /**

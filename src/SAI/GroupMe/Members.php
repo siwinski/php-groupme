@@ -14,13 +14,13 @@ namespace SAI\GroupMe;
 /**
  * @see https://dev.groupme.com/docs/v3#members
  */
-class Members extends ClientAbstract
+class Members extends ApiAbstract
 {
 
     /**
      * @see https://dev.groupme.com/docs/v3#members_add
      */
-    public function add($args = null)
+    public function add(array $members)
     {
         throw new \RuntimeException('Not implemented');
     }

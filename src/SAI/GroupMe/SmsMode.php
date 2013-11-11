@@ -14,7 +14,7 @@ namespace SAI\GroupMe;
 /**
  * @see https://dev.groupme.com/docs/v3#sms_mode
  */
-class SMSMode extends ClientAbstract
+class SmsMode extends ApiAbstract
 {
 
     /**

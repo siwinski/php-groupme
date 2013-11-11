@@ -11,55 +11,25 @@
 
 namespace SAI\GroupMe;
 
-use Guzzle\Http\Client;
-
 /**
  *
  */
-abstract class ClientAbstract
+abstract class ApiAbstract
 {
-
-    const BASE_URL = 'https://api.groupme.com/v3';
-
-    private static $clientCache = array();
-
-    private $accessToken;
-
+    protected $client;
     protected $lastResponse;
 
-    public function __construct($accessToken)
+    public function __construct(Client &$client)
     {
-        $this->setAccessToken($accessToken);
-    }
-
-    public function setAccessToken($accessToken)
-    {
-        $accessToken = trim((string) $accessToken);
-        if (empty($accessToken)) {
-            throw new \InvalidArgumentException('Access token empty');
-        }
-
-        $this->accessToken = $accessToken;
-        $this->getClient()->setDefaultOption('headers/X-Access-Token',  $accessToken);
-
-        return $this;
-    }
-
-    public function getAccessToken()
-    {
-        return $this->accessToken;
+        $this->client = $client;
     }
 
     /**
-     * @return \Guzzle\Http\Client
+     * @return \SAI\GroupMe\Client
      */
     public function getClient()
     {
-        if (!isset(self::$clientCache[$this->accessToken])) {
-            self::$clientCache[$this->accessToken] = new Client(self::BASE_URL);
-        }
-
-        return self::$clientCache[$this->accessToken];
+        return $this->client;
     }
 
     /**
@@ -93,7 +63,9 @@ abstract class ClientAbstract
      */
     public function getLastRequest()
     {
-        return is_object($this->lastResponse) ? $this->lastResponse->getRequest() : null;
+        return is_object($this->lastResponse)
+            ? $this->lastResponse->getRequest()
+            : null;
     }
 
 }

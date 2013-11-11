@@ -14,15 +14,23 @@ namespace SAI\GroupMe;
 /**
  * @see https://dev.groupme.com/docs/v3#groups
  */
-class Groups extends ClientAbstract
+class Groups extends ApiAbstract
 {
 
     /**
      * @see https://dev.groupme.com/docs/v3#groups_index
      */
-    public function index($args = null)
+    public function index($page = 0, $per_page = 0)
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->getClient()->get(array(
+            '/groups?page={page}&per_page={per_page}',
+            array(
+                'page'     => (int) $page     ?: '',
+                'per_page' => (int) $per_page ?: '',
+            )
+        ));
+
+        return $this->getResponse($request);
     }
 
     /**
@@ -30,39 +38,72 @@ class Groups extends ClientAbstract
      */
     public function former($args = null)
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->getClient()->get('/groups/former');
+
+        return $this->getResponse($request);
     }
 
     /**
      * @see https://dev.groupme.com/docs/v3#groups_show
      */
-    public function show($args = null)
+    public function show($id)
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->getClient()->get('/groups/' . $id);
+
+        return $this->getResponse($request);
     }
 
     /**
      * @see https://dev.groupme.com/docs/v3#groups_create
      */
-    public function create($args = null)
+    public function create($name, $description = '', $imageUrl = '', $share = false)
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->getClient()->post('/groups', null, array(
+            'name'        => $name,
+            'description' => $description,
+            'image_url'   => $imageUrl,
+            'share'       => $share ? 1 : 0,
+        ));
+
+        return $this->getResponse($request);
     }
 
     /**
      * @see https://dev.groupme.com/docs/v3#groups_update
      */
-    public function update($args = null)
+    public function update($id, array $args)
     {
         throw new \RuntimeException('Not implemented');
+
+        $values = array();
+        for (array('name', 'description', 'image_url', 'share') as $value) {
+          if (isset($$value)) {
+              $values[$value] = $$value;
+          }
+        }
+
+        $request = $this->getClient()->post(
+            array('/groups/{id}/update', array('id' => $id)),
+            null,
+            array(
+                'name'        => $name,
+                'description' => $description,
+                'image_url'   => $imageUrl,
+                'share'       => $share ? 1 : 0,
+            )
+        );
+
+        return $this->getResponse($request);
     }
 
     /**
      * @see https://dev.groupme.com/docs/v3#groups_destroy
      */
-    public function destroy($args = null)
+    public function destroy($id)
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->getClient()->post('/groups/' . $id . '/destroy');
+
+        return $this->getResponse($request);
     }
 
 }
