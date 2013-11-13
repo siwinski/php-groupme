@@ -13,6 +13,7 @@ namespace SAI\GroupMe;
 
 /**
  * @see https://dev.groupme.com/docs/v3#bots
+ * @see https://dev.groupme.com/tutorials/bots
  */
 class Bots extends ApiAbstract
 {
@@ -20,33 +21,64 @@ class Bots extends ApiAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#bots_create
      */
-    public function create($args = null)
+    public function create($name, $groupId, $avatarUrl = '', $callbackUrl = '')
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->client->post(
+            '/bots',
+            null,
+            array(
+                'bot[name]'         => $name,
+                'bot[group_id]'     => $groupId,
+                'bot[avatar_url]'   => $avatarUrl,
+                'bot[callback_url]' => $callbackUrl,
+            )
+        );
+
+        return $this->getResponse($request);
     }
 
     /**
      * @see https://dev.groupme.com/docs/v3#bots_post
      */
-    public function post($args = null)
+    public function post($id, $text, $picture_url = '')
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->client->post(
+            '/bots/post',
+            null,
+            array(
+                'bot_id'      => $id,
+                'text'        => $text,
+                'picture_url' => $picture_url,
+            )
+        );
+
+        return $this->getResponse($request);
     }
 
     /**
      * @see https://dev.groupme.com/docs/v3#bots_index
      */
-    public function index($args = null)
+    public function index()
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->client->get('/bots');
+
+        return $this->getResponse($request);
     }
 
     /**
      * @see https://dev.groupme.com/docs/v3#bots_destroy
      */
-    public function destroy($args = null)
+    public function destroy($id)
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->client->post(
+            '/bots/destroy',
+            null,
+            array(
+                'bot_id' => $id,
+            )
+        );
+
+        return $this->getResponse($request);
     }
 
 }

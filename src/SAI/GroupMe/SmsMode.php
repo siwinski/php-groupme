@@ -20,9 +20,18 @@ class SmsMode extends ApiAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#sms_mode_create
      */
-    public function create($args = null)
+    public function create($duration, $registrationId = '')
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->client->post(
+            '/users/sms_mode',
+            null,
+            array(
+                'duration'        => $duration,
+                'registration_id' => $registrationId,
+            )
+        );
+
+        return $this->getResponse($request);
     }
 
     /**
@@ -30,7 +39,9 @@ class SmsMode extends ApiAbstract
      */
     public function delete($args = null)
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->client->post('/users/sms_mode/delete');
+
+        return $this->getResponse($request);
     }
 
 }

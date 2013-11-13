@@ -83,7 +83,7 @@ class Groups extends ApiAbstract
         }
 
         $request = $this->getClient()->post(
-            array('/groups/{id}/update', array('id' => $id)),
+            '/groups/' . $id . '/update',
             null,
             array(
                 'name'        => $name,

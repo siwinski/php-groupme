@@ -20,17 +20,33 @@ class Likes extends ApiAbstract
     /**
      * @see https://dev.groupme.com/docs/v3#likes_create
      */
-    public function create($args = null)
+    public function create($coversationId, $messageId)
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->client->post(array(
+            '/messages/{conversation_id}/{message_id}/like',
+            array(
+                'conversation_id' => $coversationId,
+                'message_id'      => $messageId,
+            )
+        ));
+
+        return $this->getResponse($request);
     }
 
     /**
      * @see https://dev.groupme.com/docs/v3#likes_destroy
      */
-    public function destroy($args = null)
+    public function destroy($coversationId, $messageId)
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->client->post(array(
+            '/messages/{conversation_id}/{message_id}/unlike',
+            array(
+                'conversation_id' => $coversationId,
+                'message_id'      => $messageId,
+            )
+        ));
+
+        return $this->getResponse($request);
     }
 
 }

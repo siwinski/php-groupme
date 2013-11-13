@@ -22,7 +22,9 @@ class Users extends ApiAbstract
      */
     public function me($args = null)
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->client->get('/users/me');
+
+        return $this->getResponse($request);
     }
 
 }

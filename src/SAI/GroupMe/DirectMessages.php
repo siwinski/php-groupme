@@ -19,18 +19,43 @@ class DirectMessages extends ApiAbstract
 
     /**
      * @see https://dev.groupme.com/docs/v3#direct_messages_index
+     *
+     * @todo implement
      */
-    public function index($args = null)
+    public function index($otherUserId, $beforeId = '', $sinceId = '')
     {
         throw new \RuntimeException('Not implemented');
+
+        $request = $this->client->get(array(
+            '/direct_messages',
+            array(
+                'other_user_id' => '',
+                'before_id'     => '',
+                'since_id'      => '',
+            )
+        ));
+
+        return $this->getResponse($request);
     }
 
     /**
      * @see https://dev.groupme.com/docs/v3#direct_messages_create
+     *
+     * @todo attachments
      */
-    public function create($args = null)
+    public function create($sourceGuid, $recipientId, $text)
     {
-        throw new \RuntimeException('Not implemented');
+        $request = $this->client->post(
+            '/direct_messages',
+            null,
+            array(
+                'source_guid'  => $sourceGuid,
+                'recipient_id' => $recipientId,
+                'text'         => $text,
+            )
+        );
+
+        return $this->getResponse($request);
     }
 
 }
